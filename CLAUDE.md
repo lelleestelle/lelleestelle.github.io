@@ -13,6 +13,7 @@ bygger GitHub Pages om sajten automatiskt (tar ~1 min). Inga byggsteg behövs lo
 | Prosa / noveller | `_prose/` | Prosa (`/prosa/`) |
 | Dikter | `_poetry/` | Poesi (`/poesi/`) |
 | Artiklar / essäer | `_articles/` | Artiklar (`/artiklar/`) |
+| Foton / film | `_gallery/` | Galleri (`/galleri/`) |
 
 Filnamn: gemener, bindestreck, utan å/ä/ö i själva filnamnet
 (t.ex. `_poetry/host-i-staden.md`). Texten i filen behåller förstås å/ä/ö.
@@ -53,6 +54,52 @@ ny strof efter tom rad
 sista raden
 </div>
 ```
+
+## Foton och film
+
+Bilder läggs i `assets/img/` (gärna en undermapp per inlägg, t.ex.
+`assets/img/host-2026/`). JPEG/PNG, helst under ~1–2 MB per bild.
+
+**Bild i en text** (prosa/artikel) — vanlig Markdown, eller `<figure>` med bildtext:
+
+```markdown
+![Beskrivande alt-text](/assets/img/host-2026/eken.jpg)
+
+<figure>
+  <img src="/assets/img/host-2026/eken.jpg" alt="Eken i trädgården">
+  <figcaption>Eken en tidig höstmorgon.</figcaption>
+</figure>
+```
+
+**YouTube-film** (var som helst i en text) — använd include:
+
+```liquid
+{% include youtube.html id="dQw4w9WgXcQ" caption="Valfri bildtext" %}
+```
+
+`id` är delen efter `watch?v=` i YouTube-länken.
+
+**Ett galleri-inlägg** — skapa `_gallery/namn.md`:
+
+```markdown
+---
+title: "Höst i trädgården"
+date: 2026-06-30
+summary: "Några bilder och en film."
+cover: /assets/img/host-2026/eken.jpg   # miniatyr i listan
+videos:
+  - id: dQw4w9WgXcQ
+    caption: "Vinden i eken"
+images:
+  - src: /assets/img/host-2026/eken.jpg
+    caption: "Eken en tidig morgon"
+  - src: /assets/img/host-2026/loven.jpg
+---
+
+Valfri inledande text här.
+```
+
+Film hostas alltid på YouTube (vi laddar inte upp videofiler till repot).
 
 ## Viktigt om författarens text
 

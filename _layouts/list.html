@@ -12,9 +12,12 @@ layout: default
     <ul class="piece-list">
       {% for item in items %}
       <li class="piece-card">
-        <a class="piece-card-link" href="{{ item.url | relative_url }}">
-          <h2 class="piece-card-title">{{ item.title }}</h2>
-          {% if item.summary %}<p class="piece-card-excerpt">{{ item.summary }}</p>{% endif %}
+        <a class="piece-card-link{% if item.cover %} has-cover{% endif %}" href="{{ item.url | relative_url }}">
+          {% if item.cover %}<img class="piece-card-cover" src="{{ item.cover | relative_url }}" alt="" loading="lazy">{% endif %}
+          <span class="piece-card-text">
+            <h2 class="piece-card-title">{{ item.title }}</h2>
+            {% if item.summary %}<p class="piece-card-excerpt">{{ item.summary }}</p>{% endif %}
+          </span>
         </a>
       </li>
       {% endfor %}

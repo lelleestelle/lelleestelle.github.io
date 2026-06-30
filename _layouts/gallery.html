@@ -1,0 +1,39 @@
+---
+layout: default
+---
+<article class="piece gallery-piece">
+  <header class="piece-header">
+    <p class="eyebrow">{{ page.genre | default: 'Galleri' }}</p>
+    <h1 class="piece-title">{{ page.title }}</h1>
+    {% if page.date %}<p class="piece-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%-d %B %Y' }}</time></p>{% endif %}
+  </header>
+
+  {% if content != "" %}<div class="piece-body gallery-intro">{{ content }}</div>{% endif %}
+
+  {% if page.videos %}
+    <div class="gallery-videos">
+      {% for v in page.videos %}
+        {% if v.id %}{% include youtube.html id=v.id title=v.title caption=v.caption %}
+        {% else %}{% include youtube.html id=v %}{% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if page.images %}
+    <div class="gallery-grid">
+      {% for img in page.images %}
+        {% assign src = img.src | default: img %}
+        <figure>
+          <a href="{{ src | relative_url }}" target="_blank" rel="noopener">
+            <img src="{{ src | relative_url }}" alt="{{ img.alt | default: page.title }}" loading="lazy">
+          </a>
+          {% if img.caption %}<figcaption>{{ img.caption }}</figcaption>{% endif %}
+        </figure>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <nav class="piece-nav">
+    <a href="{{ '/galleri/' | relative_url }}">← Tillbaka till galleriet</a>
+  </nav>
+</article>

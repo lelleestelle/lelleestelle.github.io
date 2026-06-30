@@ -18,6 +18,9 @@ collections:
   articles:
     output: true
     permalink: /artiklar/:name/
+  gallery:
+    output: true
+    permalink: /galleri/:name/
 
 defaults:
   - scope:
@@ -38,6 +41,12 @@ defaults:
     values:
       layout: piece
       genre: Artikel
+  - scope:
+      path: ""
+      type: gallery
+    values:
+      layout: gallery
+      genre: Galleri
 
 # Sektioner som visas i menyn och på startsidan
 sections:
@@ -53,6 +62,10 @@ sections:
     collection: articles
     url: /artiklar/
     blurb: Betraktelser, essäer och texter om tiden.
+  - title: Galleri
+    collection: gallery
+    url: /galleri/
+    blurb: Foton och film.
 
 markdown: kramdown
 permalink: pretty
