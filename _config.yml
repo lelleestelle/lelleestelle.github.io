@@ -1,21 +1,18 @@
 title: Berättelser av en kid
 author: Estelle
 tagline: av Estelle
-description: Berättelser, skrivande och vandringar av Estelle.
+description: Skrivande, vandringar och projekt av Estelle.
 lang: sv
 url: "https://lelleestelle.github.io"
 baseurl: ""
 
 # Bygger med GitHub Pages. Lägg till en text genom att skapa en .md-fil i
-# _skrivande, _berattelser, _vandrande eller _projekt. Sidan byggs om automatiskt.
+# _skrivande, _vandrande eller _projekt. Sidan byggs om automatiskt.
 
 collections:
   skrivande:
     output: true
     permalink: /skrivande/:name/
-  berattelser:
-    output: true
-    permalink: /berattelser/:name/
   vandrande:
     output: true
     permalink: /pa-vandrande-fot/:name/
@@ -30,12 +27,6 @@ defaults:
     values:
       layout: piece
       genre: Skrivande
-  - scope:
-      path: ""
-      type: berattelser
-    values:
-      layout: piece
-      genre: Berättelse
   - scope:
       path: ""
       type: vandrande
@@ -54,11 +45,7 @@ sections:
   - title: Skrivande
     collection: skrivande
     url: /skrivande/
-    blurb: Texter, tankar och ord.
-  - title: Berättelser
-    collection: berattelser
-    url: /berattelser/
-    blurb: Noveller och berättelser.
+    blurb: Texter, berättelser och ord.
   - title: På vandrande fot
     collection: vandrande
     url: /pa-vandrande-fot/
@@ -80,3 +67,4 @@ exclude:
   - Gemfile.lock
   - README.md
   - vendor
+  - _source

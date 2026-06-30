@@ -4,14 +4,14 @@
    ========================================================= */
 
 :root {
-  --paper:        #f7f4ec;   /* light paper */
-  --paper-deep:   #efe9da;
-  --ink:          #2b2520;
-  --ink-soft:     #5a5048;
-  --ink-faint:    #8a7d70;
+  --paper:        #f1e7d2;   /* light beige paper */
+  --paper-deep:   #e8dcc1;
+  --ink:          #14110c;   /* black */
+  --ink-soft:     #3d362c;
+  --ink-faint:    #6f6555;
   --accent:       #9c5b3f;   /* terracotta */
   --accent-deep:  #7e442d;
-  --line:         #e0d7c6;
+  --line:         #d8cbae;
   --reading:      40rem;     /* ~640px reading column */
 }
 
@@ -22,15 +22,16 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background-color: var(--paper);
-  /* faint paper grain over warm tints */
+  /* light beige paper texture: faint fibre grain + soft uneven tints */
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"),
-    radial-gradient(at 18% 0%, rgba(156, 91, 63, 0.035), transparent 55%),
-    radial-gradient(at 90% 100%, rgba(120, 95, 60, 0.035), transparent 50%);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    radial-gradient(at 20% 10%, rgba(180, 150, 100, 0.08), transparent 60%),
+    radial-gradient(at 85% 90%, rgba(150, 120, 80, 0.07), transparent 55%);
   color: var(--ink);
-  font-family: "EB Garamond", Georgia, "Times New Roman", serif;
-  font-size: 1.2rem;
-  line-height: 1.75;
+  font-family: "Cinzel", Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  letter-spacing: 0.01em;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -242,7 +243,14 @@ body {
   font-size: 1rem;
 }
 
-.piece-body { font-size: 1.22rem; }
+/* Long-form reading prose stays in a legible serif — Cinzel is caps-only
+   and unreadable for a whole story. Smaller/secondary text uses Cinzel. */
+.piece-body {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.25rem;
+  line-height: 1.75;
+  letter-spacing: 0;
+}
 .piece-body p { margin: 0 0 1.5rem; }
 .piece-body p:first-of-type::first-letter {
   font-family: "Cormorant Garamond", Georgia, serif;

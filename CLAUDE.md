@@ -1,7 +1,13 @@
 # Estelle — personlig skrivsajt
 
 Jekyll-sajt på GitHub Pages. Publiceras på **https://lelleestelle.github.io**.
-Författarnamn som visas: **Estelle**. Gränssnittet är på svenska. Känslan är **varm & litterär**.
+Författarnamn som visas: **Estelle**. Gränssnittet är på svenska.
+
+Utseende: **ljust beige papper** som bakgrund. **Rubriker** sätts som
+magasinsurklipp (ransom-note) via `assets/js/cutout.js` — bokstäverna studsar vid
+hovring. **Mindre text** (meny, ingresser, bildtexter) är **Cinzel i svart**.
+**Längre brödtext** (t.ex. noveller) är EB Garamond för läsbarhetens skull
+(Cinzel är versalt och tungläst i löptext).
 
 ## Så här lägger Claude till en ny text
 
@@ -10,8 +16,7 @@ bygger GitHub Pages om sajten automatiskt (tar ~1 min). Inga byggsteg behövs lo
 
 | Typ | Mapp | Visas under |
 |-----|------|-------------|
-| Texter, tankar, dikter | `_skrivande/` | Skrivande (`/skrivande/`) |
-| Noveller / berättelser | `_berattelser/` | Berättelser (`/berattelser/`) |
+| Texter, noveller, dikter (t.ex. *Skärvor av en man*) | `_skrivande/` | Skrivande (`/skrivande/`) |
 | Resor / vandringar (text + foto) | `_vandrande/` | På vandrande fot (`/pa-vandrande-fot/`) |
 | Projekt | `_projekt/` | Projekt (`/projekt/`) |
 
