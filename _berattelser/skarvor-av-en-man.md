@@ -1,7 +1,6 @@
 ---
 layout: piece
 title: "Skärvor av en man"
-genre: Prosa
 signature: "Pseudonym: Janne"
 summary: "En man vid sitt köksbord, en försvunnen hustru, och en sanning som långsamt stiger fram."
 ---

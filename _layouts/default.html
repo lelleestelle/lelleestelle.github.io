@@ -17,7 +17,7 @@
   <a class="skip-link" href="#main">Hoppa till innehåll</a>
   <header class="site-header">
     <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <p class="site-tagline">{{ site.description }}</p>
+    <p class="site-tagline">{{ site.tagline | default: site.description }}</p>
     <nav class="site-nav" aria-label="Huvudmeny">
       <a href="{{ '/' | relative_url }}">Hem</a>
       {% for s in site.sections %}<a href="{{ s.url | relative_url }}">{{ s.title }}</a>{% endfor %}

@@ -4,7 +4,13 @@
    letters snipped from different magazines and glued to the page. */
 (function () {
   var FONTS = ['f-anton', 'f-abril', 'f-oswald', 'f-playfair', 'f-archivo', 'f-elite', 'f-dmserif'];
-  var PAPERS = ['p-white', 'p-cream', 'p-kraft', 'p-black', 'p-terra', 'p-mustard', 'p-sky'];
+  // weighted toward newsprint white/black with colour accents, like the
+  // reference sheet (repeats bias the random pick)
+  var PAPERS = [
+    'p-white', 'p-white', 'p-news', 'p-news', 'p-cream',
+    'p-black', 'p-black', 'p-kraft',
+    'p-terra', 'p-red', 'p-mustard', 'p-navy', 'p-teal', 'p-green', 'p-pink', 'p-sky'
+  ];
 
   // Headlines to treat as cutouts.
   var SELECTORS = [
@@ -43,8 +49,10 @@
       var span = document.createElement('span');
       span.className = 'cutout-letter ' + font + ' ' + pick(PAPERS);
       span.setAttribute('aria-hidden', 'true');
-      span.style.transform =
-        'rotate(' + rand(-7, 7).toFixed(2) + 'deg) translateY(' + rand(-0.06, 0.06).toFixed(3) + 'em)';
+      // rotation + jitter as CSS vars so the :hover bounce can layer on
+      // top without overriding the letter's individual tilt
+      span.style.setProperty('--rot', rand(-7, 7).toFixed(2) + 'deg');
+      span.style.setProperty('--dy', rand(-0.06, 0.06).toFixed(3) + 'em');
       span.textContent = ch;
       el.appendChild(span);
     }

@@ -10,13 +10,16 @@ bygger GitHub Pages om sajten automatiskt (tar ~1 min). Inga byggsteg behövs lo
 
 | Typ | Mapp | Visas under |
 |-----|------|-------------|
-| Prosa / noveller | `_prose/` | Prosa (`/prosa/`) |
-| Dikter | `_poetry/` | Poesi (`/poesi/`) |
-| Artiklar / essäer | `_articles/` | Artiklar (`/artiklar/`) |
-| Foton / film | `_gallery/` | Galleri (`/galleri/`) |
+| Texter, tankar, dikter | `_skrivande/` | Skrivande (`/skrivande/`) |
+| Noveller / berättelser | `_berattelser/` | Berättelser (`/berattelser/`) |
+| Resor / vandringar (text + foto) | `_vandrande/` | På vandrande fot (`/pa-vandrande-fot/`) |
+| Projekt | `_projekt/` | Projekt (`/projekt/`) |
 
 Filnamn: gemener, bindestreck, utan å/ä/ö i själva filnamnet
-(t.ex. `_poetry/host-i-staden.md`). Texten i filen behåller förstås å/ä/ö.
+(t.ex. `_skrivande/host-i-staden.md`). Texten i filen behåller förstås å/ä/ö.
+
+Den stora rubriken på sidan ("Berättelser av en kid") och författarnamnet
+("Estelle") sätts i `_config.yml` (`title`, `author`, `tagline`).
 
 ### Mall — prosa eller artikel
 
@@ -79,27 +82,30 @@ Bilder läggs i `assets/img/` (gärna en undermapp per inlägg, t.ex.
 
 `id` är delen efter `watch?v=` i YouTube-länken.
 
-**Ett galleri-inlägg** — skapa `_gallery/namn.md`:
+**Ett foto-galleri-inlägg** (t.ex. under "På vandrande fot") — sätt
+`layout: gallery` och lista bilder/film i front matter:
 
 ```markdown
 ---
-title: "Höst i trädgården"
+layout: gallery
+title: "Vandring i fjällen"
 date: 2026-06-30
 summary: "Några bilder och en film."
-cover: /assets/img/host-2026/eken.jpg   # miniatyr i listan
+cover: /assets/img/fjall-2026/topp.jpg   # miniatyr i listan
 videos:
   - id: dQw4w9WgXcQ
-    caption: "Vinden i eken"
+    caption: "Utsikt från toppen"
 images:
-  - src: /assets/img/host-2026/eken.jpg
-    caption: "Eken en tidig morgon"
-  - src: /assets/img/host-2026/loven.jpg
+  - src: /assets/img/fjall-2026/topp.jpg
+    caption: "På toppen"
+  - src: /assets/img/fjall-2026/dalen.jpg
 ---
 
 Valfri inledande text här.
 ```
 
 Film hostas alltid på YouTube (vi laddar inte upp videofiler till repot).
+Layouten `gallery` finns kvar och kan användas i vilken sektion som helst.
 
 ## Viktigt om författarens text
 

@@ -4,14 +4,14 @@
    ========================================================= */
 
 :root {
-  --paper:        #f6efe2;
-  --paper-deep:   #efe6d4;
+  --paper:        #f7f4ec;   /* light paper */
+  --paper-deep:   #efe9da;
   --ink:          #2b2520;
   --ink-soft:     #5a5048;
   --ink-faint:    #8a7d70;
   --accent:       #9c5b3f;   /* terracotta */
   --accent-deep:  #7e442d;
-  --line:         #ddd0ba;
+  --line:         #e0d7c6;
   --reading:      40rem;     /* ~640px reading column */
 }
 
@@ -22,9 +22,11 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background-color: var(--paper);
+  /* faint paper grain over warm tints */
   background-image:
-    radial-gradient(at 18% 0%, rgba(156, 91, 63, 0.05), transparent 55%),
-    radial-gradient(at 90% 100%, rgba(120, 95, 60, 0.05), transparent 50%);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"),
+    radial-gradient(at 18% 0%, rgba(156, 91, 63, 0.035), transparent 55%),
+    radial-gradient(at 90% 100%, rgba(120, 95, 60, 0.035), transparent 50%);
   color: var(--ink);
   font-family: "EB Garamond", Georgia, "Times New Roman", serif;
   font-size: 1.2rem;
@@ -58,13 +60,14 @@ body {
 }
 .site-title {
   display: inline-block;
+  max-width: 18em;
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 3.1rem;
+  font-size: 2.7rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   color: var(--ink);
   text-decoration: none;
-  line-height: 1.05;
+  line-height: 1.1;
 }
 .site-title:hover { color: var(--accent-deep); }
 .site-tagline {
@@ -312,7 +315,7 @@ body {
 /* ---- responsive ---- */
 @media (max-width: 600px) {
   body { font-size: 1.12rem; }
-  .site-title { font-size: 2.4rem; }
+  .site-title { font-size: 2rem; }
   .piece-title { font-size: 2.2rem; }
   .piece-body { font-size: 1.14rem; }
   .home-lede { font-size: 1.18rem; }
@@ -413,24 +416,32 @@ figcaption,
 .cutout {
   display: inline-block;
   letter-spacing: 0;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 .cutout-letter {
+  position: relative;
   display: inline-block;
-  padding: 0.04em 0.11em;
-  margin: 0 0.018em;
-  border-radius: 2px;
+  padding: 0.05em 0.12em;
+  margin: 0 0.02em;
+  border-radius: 2px 3px 2px 3px;   /* faintly uneven, like a cut edge */
   box-shadow: 1.5px 2px 3px rgba(40, 30, 20, 0.22);
-  text-transform: uppercase;     /* cutout caps read more like clippings */
-  -webkit-text-stroke: 0;
+  text-transform: uppercase;        /* cutout caps read more like clippings */
+  transform: rotate(var(--rot, 0deg)) translateY(var(--dy, 0));
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease;
+  cursor: default;
 }
-.cutout-letter::after {           /* faint torn-paper top edge */
-  content: "";
-  position: absolute;
+.cutout-letter:hover {              /* little bounce on hover */
+  transform: rotate(var(--rot, 0deg)) translateY(calc(var(--dy, 0px) - 0.32em)) scale(1.09);
+  box-shadow: 2px 6px 9px rgba(40, 30, 20, 0.28);
+  z-index: 3;
 }
 .cutout-space {
   display: inline-block;
   width: 0.3em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cutout-letter { transition: none; }
+  .cutout-letter:hover { transform: rotate(var(--rot, 0deg)) translateY(var(--dy, 0)); }
 }
 
 /* fonts — a mix of display faces */
@@ -442,13 +453,20 @@ figcaption,
 .f-elite    { font-family: "Special Elite", "Courier New", monospace; }
 .f-dmserif  { font-family: "DM Serif Display", serif; }
 
-/* papers — warm magazine palette with a couple of cool accents */
-.p-white   { background: #fcfaf3; color: #2b2520; }
+/* papers — clipped from real magazines: mostly newsprint white/black,
+   with colour accents like the reference sheet */
+.p-white   { background: #fcfaf3; color: #211c18; }
+.p-news     { background: #f1ece0; color: #211c18; }
 .p-cream   { background: #efe2c6; color: #2b2520; }
 .p-kraft   { background: #cdb389; color: #241c12; }
 .p-black   { background: #231e1a; color: #f3e9d6; }
 .p-terra   { background: #9c5b3f; color: #fdf6ec; }
+.p-red      { background: #b13a2b; color: #fdeee6; }
 .p-mustard { background: #d39a2f; color: #241c12; }
+.p-navy     { background: #2f4a63; color: #f3f0e6; }
+.p-teal     { background: #2f7d72; color: #f4f1e6; }
+.p-green    { background: #5f7a35; color: #f6f3e6; }
+.p-pink     { background: #c87189; color: #2b1a20; }
 .p-sky     { background: #7f96a3; color: #fdf9f0; }
 
 /* tighten the headline containers now that letters carry their own size */
