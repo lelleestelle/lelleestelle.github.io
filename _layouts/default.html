@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <!-- assorted display faces for the magazine-cutout headlines -->
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Abril+Fatface&family=Archivo+Black&family=DM+Serif+Display:ital@0;1&family=Oswald:wght@500;700&family=Playfair+Display:wght@700;900&family=Special+Elite&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   {% feed_meta %}
   {% seo %}
 </head>
@@ -33,6 +33,6 @@
     <p>© {{ site.time | date: '%Y' }} {{ site.author }}</p>
   </footer>
 
-  <script src="{{ '/assets/js/cutout.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/cutout.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 </body>
 </html>
