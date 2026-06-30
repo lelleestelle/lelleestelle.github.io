@@ -1,0 +1,68 @@
+title: Estelle
+author: Estelle
+description: Texter, dikter och betraktelser.
+lang: sv
+url: "https://lelleestelle.github.io"
+baseurl: ""
+
+# Bygger med GitHub Pages. Lägg till en text genom att skapa en .md-fil i
+# _prose (prosa), _poetry (poesi) eller _articles (artiklar). Sidan byggs om automatiskt.
+
+collections:
+  prose:
+    output: true
+    permalink: /prosa/:name/
+  poetry:
+    output: true
+    permalink: /poesi/:name/
+  articles:
+    output: true
+    permalink: /artiklar/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: prose
+    values:
+      layout: piece
+      genre: Prosa
+  - scope:
+      path: ""
+      type: poetry
+    values:
+      layout: piece
+      genre: Poesi
+  - scope:
+      path: ""
+      type: articles
+    values:
+      layout: piece
+      genre: Artikel
+
+# Sektioner som visas i menyn och på startsidan
+sections:
+  - title: Prosa
+    collection: prose
+    url: /prosa/
+    blurb: Noveller och längre berättelser.
+  - title: Poesi
+    collection: poetry
+    url: /poesi/
+    blurb: Dikter, korta och långa.
+  - title: Artiklar
+    collection: articles
+    url: /artiklar/
+    blurb: Betraktelser, essäer och texter om tiden.
+
+markdown: kramdown
+permalink: pretty
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor

@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<article class="piece">
+  <header class="piece-header">
+    {% if page.genre %}<p class="eyebrow">{{ page.genre }}</p>{% endif %}
+    <h1 class="piece-title">{{ page.title }}</h1>
+    {% if page.date %}<p class="piece-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%-d %B %Y' }}</time></p>{% endif %}
+  </header>
+
+  <div class="piece-body">
+    {{ content }}
+  </div>
+
+  {% if page.signature %}<p class="piece-signature">{{ page.signature }}</p>{% endif %}
+
+  <nav class="piece-nav">
+    <a href="{{ '/' | relative_url }}">← Tillbaka</a>
+  </nav>
+</article>

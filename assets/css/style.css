@@ -1,0 +1,320 @@
+/* =========================================================
+   Estelle — warm & literary
+   Palette: warm paper, ink, terracotta accent
+   ========================================================= */
+
+:root {
+  --paper:        #f6efe2;
+  --paper-deep:   #efe6d4;
+  --ink:          #2b2520;
+  --ink-soft:     #5a5048;
+  --ink-faint:    #8a7d70;
+  --accent:       #9c5b3f;   /* terracotta */
+  --accent-deep:  #7e442d;
+  --line:         #ddd0ba;
+  --reading:      40rem;     /* ~640px reading column */
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(at 18% 0%, rgba(156, 91, 63, 0.05), transparent 55%),
+    radial-gradient(at 90% 100%, rgba(120, 95, 60, 0.05), transparent 50%);
+  color: var(--ink);
+  font-family: "EB Garamond", Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+  line-height: 1.75;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- skip link ---- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.5rem 0.9rem;
+  z-index: 10;
+  border-radius: 3px;
+}
+
+/* ---- header ---- */
+.site-header {
+  text-align: center;
+  padding: 3.4rem 1.25rem 1.6rem;
+  border-bottom: 1px solid var(--line);
+  max-width: 52rem;
+  margin: 0 auto;
+}
+.site-title {
+  display: inline-block;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 3.1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  text-decoration: none;
+  line-height: 1.05;
+}
+.site-title:hover { color: var(--accent-deep); }
+.site-tagline {
+  margin: 0.5rem 0 0;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-faint);
+}
+.site-nav {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.4rem;
+}
+.site-nav a {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.site-nav a:hover {
+  color: var(--accent-deep);
+  border-color: var(--accent);
+}
+
+/* ---- main ---- */
+.site-main {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 2.8rem 1.25rem 1rem;
+}
+
+/* ---- home ---- */
+.home-intro {
+  max-width: var(--reading);
+  margin: 0 auto 2.6rem;
+  text-align: center;
+}
+.home-lede {
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.home-section { margin: 0 auto 3.2rem; }
+.home-section-header { margin-bottom: 1.3rem; }
+.home-section-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin: 0;
+  display: inline-block;
+}
+.home-section-title::after {
+  content: "";
+  display: block;
+  width: 2.4rem;
+  height: 2px;
+  margin-top: 0.45rem;
+  background: var(--accent);
+  opacity: 0.7;
+}
+.home-section-title a { color: var(--ink); text-decoration: none; }
+.home-section-title a:hover { color: var(--accent-deep); }
+.home-section-blurb {
+  margin: 0.5rem 0 0;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+.home-section-more {
+  margin-top: 0.6rem;
+}
+.home-section-more a {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.04em;
+  color: var(--accent-deep);
+  text-decoration: none;
+}
+.home-section-more a:hover { text-decoration: underline; }
+
+/* ---- piece lists / cards ---- */
+.piece-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.piece-card {
+  border-top: 1px solid var(--line);
+}
+.piece-card:last-child { border-bottom: 1px solid var(--line); }
+.piece-card-link {
+  display: block;
+  padding: 1.25rem 0.4rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s, padding-left 0.2s;
+}
+.piece-card-link:hover {
+  background: var(--paper-deep);
+  padding-left: 0.9rem;
+}
+.piece-card-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--ink);
+}
+.piece-card-link:hover .piece-card-title { color: var(--accent-deep); }
+.piece-card-excerpt {
+  margin: 0.35rem 0 0;
+  color: var(--ink-soft);
+  font-size: 1.08rem;
+  line-height: 1.6;
+}
+.empty-note {
+  color: var(--ink-faint);
+  font-style: italic;
+  padding: 0.6rem 0;
+}
+
+/* ---- section pages ---- */
+.section-page { max-width: var(--reading); margin: 0 auto; }
+.section-header { text-align: center; margin-bottom: 2rem; }
+.section-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2.6rem;
+  font-weight: 600;
+  margin: 0;
+}
+.section-blurb {
+  color: var(--ink-faint);
+  font-style: italic;
+  margin: 0.4rem 0 0;
+}
+
+/* ---- single piece ---- */
+.piece {
+  max-width: var(--reading);
+  margin: 0 auto;
+}
+.piece-header {
+  text-align: center;
+  margin-bottom: 2.4rem;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-deep);
+  margin: 0 0 0.7rem;
+}
+.piece-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2.9rem;
+  line-height: 1.12;
+  font-weight: 600;
+  margin: 0;
+}
+.piece-date {
+  margin: 0.6rem 0 0;
+  color: var(--ink-faint);
+  font-style: italic;
+  font-size: 1rem;
+}
+
+.piece-body { font-size: 1.22rem; }
+.piece-body p { margin: 0 0 1.5rem; }
+.piece-body p:first-of-type::first-letter {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  float: left;
+  font-size: 3.9rem;
+  line-height: 0.78;
+  padding: 0.32rem 0.6rem 0 0;
+  color: var(--accent-deep);
+  font-weight: 600;
+}
+.piece-body h2, .piece-body h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  margin: 2.2rem 0 0.8rem;
+}
+.piece-body blockquote {
+  margin: 1.6rem 0;
+  padding-left: 1.2rem;
+  border-left: 2px solid var(--accent);
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.piece-body a { color: var(--accent-deep); }
+
+/* Poetry: preserve line breaks gracefully. Wrap verse in
+   a fenced block or use a `poem` class; default keeps stanzas. */
+.piece-body .poem,
+.piece-body pre.poem {
+  font-family: "EB Garamond", Georgia, serif;
+  white-space: pre-wrap;
+  font-size: 1.2rem;
+  line-height: 1.9;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.piece-signature {
+  margin-top: 2.6rem;
+  text-align: right;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+.piece-nav {
+  margin: 3rem 0 1rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.piece-nav a {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.05em;
+  color: var(--accent-deep);
+  text-decoration: none;
+}
+.piece-nav a:hover { text-decoration: underline; }
+
+/* ---- footer ---- */
+.site-footer {
+  max-width: 52rem;
+  margin: 2.5rem auto 0;
+  padding: 1.6rem 1.25rem 2.6rem;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: 0.95rem;
+}
+
+/* ---- responsive ---- */
+@media (max-width: 600px) {
+  body { font-size: 1.12rem; }
+  .site-title { font-size: 2.4rem; }
+  .piece-title { font-size: 2.2rem; }
+  .piece-body { font-size: 1.14rem; }
+  .home-lede { font-size: 1.18rem; }
+  .site-main { padding-top: 2rem; }
+}

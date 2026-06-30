@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<section class="section-page">
+  <header class="section-header">
+    <h1 class="section-title">{{ page.title }}</h1>
+    {% if page.blurb %}<p class="section-blurb">{{ page.blurb }}</p>{% endif %}
+  </header>
+
+  {% assign items = site[page.collection] | sort: 'date' | reverse %}
+  {% if items.size > 0 %}
+    <ul class="piece-list">
+      {% for item in items %}
+      <li class="piece-card">
+        <a class="piece-card-link" href="{{ item.url | relative_url }}">
+          <h2 class="piece-card-title">{{ item.title }}</h2>
+          {% if item.summary %}<p class="piece-card-excerpt">{{ item.summary }}</p>{% endif %}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="empty-note">Här samlas snart texter. Återkom gärna.</p>
+  {% endif %}
+
+  {{ content }}
+</section>

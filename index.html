@@ -1,0 +1,33 @@
+---
+layout: default
+title: null
+---
+<section class="home-intro">
+  <p class="home-lede">Välkommen. Här samlar jag det jag skriver — prosa, poesi och artiklar. Slå dig ner och läs en stund.</p>
+</section>
+
+{% for s in site.sections %}
+  {% assign items = site[s.collection] | sort: 'date' | reverse %}
+  <section class="home-section">
+    <header class="home-section-header">
+      <h2 class="home-section-title"><a href="{{ s.url | relative_url }}">{{ s.title }}</a></h2>
+      {% if s.blurb %}<p class="home-section-blurb">{{ s.blurb }}</p>{% endif %}
+    </header>
+
+    {% if items.size > 0 %}
+      <ul class="piece-list">
+        {% for item in items limit: 4 %}
+        <li class="piece-card">
+          <a class="piece-card-link" href="{{ item.url | relative_url }}">
+            <h3 class="piece-card-title">{{ item.title }}</h3>
+            {% if item.summary %}<p class="piece-card-excerpt">{{ item.summary }}</p>{% endif %}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% if items.size > 4 %}<p class="home-section-more"><a href="{{ s.url | relative_url }}">Se alla {{ s.title | downcase }} →</a></p>{% endif %}
+    {% else %}
+      <p class="empty-note">Här samlas snart texter. Återkom gärna.</p>
+    {% endif %}
+  </section>
+{% endfor %}
