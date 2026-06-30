@@ -318,3 +318,60 @@ body {
   .home-lede { font-size: 1.18rem; }
   .site-main { padding-top: 2rem; }
 }
+
+/* =========================================================
+   Magazine-cutout headlines (ransom-note collage)
+   Per-letter spans get a paper colour + font via cutout.js
+   ========================================================= */
+.cutout {
+  display: inline-block;
+  letter-spacing: 0;
+  line-height: 1.55;
+}
+.cutout-letter {
+  display: inline-block;
+  padding: 0.04em 0.11em;
+  margin: 0 0.018em;
+  border-radius: 2px;
+  box-shadow: 1.5px 2px 3px rgba(40, 30, 20, 0.22);
+  text-transform: uppercase;     /* cutout caps read more like clippings */
+  -webkit-text-stroke: 0;
+}
+.cutout-letter::after {           /* faint torn-paper top edge */
+  content: "";
+  position: absolute;
+}
+.cutout-space {
+  display: inline-block;
+  width: 0.3em;
+}
+
+/* fonts — a mix of display faces */
+.f-anton    { font-family: "Anton", sans-serif; font-weight: 400; }
+.f-abril    { font-family: "Abril Fatface", serif; }
+.f-oswald   { font-family: "Oswald", sans-serif; font-weight: 700; }
+.f-playfair { font-family: "Playfair Display", serif; font-weight: 900; }
+.f-archivo  { font-family: "Archivo Black", sans-serif; }
+.f-elite    { font-family: "Special Elite", "Courier New", monospace; }
+.f-dmserif  { font-family: "DM Serif Display", serif; }
+
+/* papers — warm magazine palette with a couple of cool accents */
+.p-white   { background: #fcfaf3; color: #2b2520; }
+.p-cream   { background: #efe2c6; color: #2b2520; }
+.p-kraft   { background: #cdb389; color: #241c12; }
+.p-black   { background: #231e1a; color: #f3e9d6; }
+.p-terra   { background: #9c5b3f; color: #fdf6ec; }
+.p-mustard { background: #d39a2f; color: #241c12; }
+.p-sky     { background: #7f96a3; color: #fdf9f0; }
+
+/* tighten the headline containers now that letters carry their own size */
+.cutout.site-title { letter-spacing: 0; }
+.cutout.piece-title,
+.cutout.section-title { letter-spacing: 0; }
+
+/* respect reduced-motion: nothing animates, so nothing to do, but keep
+   the look readable on very small screens */
+@media (max-width: 600px) {
+  .cutout-letter { padding: 0.03em 0.08em; }
+}
+
