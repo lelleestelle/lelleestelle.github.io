@@ -1,18 +1,20 @@
-/* Magazine-cutout headlines.
-   Wraps each letter of selected headlines in a paper-scrap span with a
-   randomised font, paper colour, rotation and vertical jitter — like
-   letters snipped from different magazines and glued to the page. */
+/* Magazine-cutout headlines from real clippings.
+   Each title letter is rendered as a sliced letter image (assets/letters/),
+   randomly rotated with a little jitter and a hover bounce. Characters with
+   no clipping (digits, punctuation) fall back to a styled CSS paper scrap. */
 (function () {
+  var BASE = '/assets/letters/';
+  var LETTERS = {
+    A: 'A.png', B: 'B.png', C: 'C.png', D: 'D.png', E: 'E.png', F: 'F.png',
+    G: 'G.png', H: 'H.png', I: 'I.png', J: 'J.png', K: 'K.png', L: 'L.png',
+    M: 'M.png', N: 'N.png', O: 'O.png', P: 'P.png', Q: 'Q.png', R: 'R.png',
+    S: 'S.png', T: 'T.png', U: 'U.png', V: 'V.png', W: 'W.png', X: 'X.png',
+    Y: 'Y.png', Z: 'Z.png', 'Ä': 'A_uml.png', 'Å': 'A_ring.png', 'Ö': 'O_uml.png'
+  };
+  // fallback styling for characters with no clipping
   var FONTS = ['f-anton', 'f-abril', 'f-oswald', 'f-playfair', 'f-archivo', 'f-elite', 'f-dmserif'];
-  // weighted toward newsprint white/black with colour accents, like the
-  // reference sheet (repeats bias the random pick)
-  var PAPERS = [
-    'p-white', 'p-white', 'p-news', 'p-news', 'p-cream',
-    'p-black', 'p-black', 'p-kraft',
-    'p-terra', 'p-red', 'p-mustard', 'p-navy', 'p-teal', 'p-green', 'p-pink', 'p-sky'
-  ];
+  var PAPERS = ['p-white', 'p-news', 'p-cream', 'p-black', 'p-kraft', 'p-terra', 'p-red', 'p-mustard', 'p-navy', 'p-teal'];
 
-  // Headlines to treat as cutouts.
   var SELECTORS = [
     '.site-title',
     '.piece-title',
@@ -21,8 +23,13 @@
     '.piece-card-title'
   ];
 
-  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-  function rand(min, max) { return Math.random() * (max - min) + min; }
+  function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+  function rand(lo, hi) { return Math.random() * (hi - lo) + lo; }
+
+  function vars(node) {
+    node.style.setProperty('--rot', rand(-7, 7).toFixed(2) + 'deg');
+    node.style.setProperty('--dy', rand(-0.05, 0.05).toFixed(3) + 'em');
+  }
 
   function cutoutify(el) {
     if (el.dataset.cutoutDone) return;
@@ -41,20 +48,27 @@
         el.appendChild(sp);
         continue;
       }
-      // avoid two identical fonts in a row, for more collage variety
-      var font = pick(FONTS);
-      if (font === prevFont) font = pick(FONTS);
-      prevFont = font;
-
-      var span = document.createElement('span');
-      span.className = 'cutout-letter ' + font + ' ' + pick(PAPERS);
-      span.setAttribute('aria-hidden', 'true');
-      // rotation + jitter as CSS vars so the :hover bounce can layer on
-      // top without overriding the letter's individual tilt
-      span.style.setProperty('--rot', rand(-7, 7).toFixed(2) + 'deg');
-      span.style.setProperty('--dy', rand(-0.06, 0.06).toFixed(3) + 'em');
-      span.textContent = ch;
-      el.appendChild(span);
+      var key = ch.toUpperCase();
+      if (LETTERS[key]) {
+        var img = document.createElement('img');
+        img.className = 'cutout-img-letter';
+        img.src = BASE + LETTERS[key];
+        img.alt = '';
+        img.setAttribute('aria-hidden', 'true');
+        img.loading = 'eager';
+        vars(img);
+        el.appendChild(img);
+      } else {
+        var font = pick(FONTS);
+        if (font === prevFont) font = pick(FONTS);
+        prevFont = font;
+        var span = document.createElement('span');
+        span.className = 'cutout-letter ' + font + ' ' + pick(PAPERS);
+        span.setAttribute('aria-hidden', 'true');
+        vars(span);
+        span.textContent = ch;
+        el.appendChild(span);
+      }
     }
     el.dataset.cutoutDone = '1';
   }
